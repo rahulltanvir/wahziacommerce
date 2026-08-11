@@ -131,7 +131,7 @@
                       <!-- Logo -->
                       <div class="col-lg-2 col-md-3 col-6">
                           <a class="navbar-brand" href="{{ route('home') }}">
-                              <img src="{{ asset('website/assets/images/logo/logo.svg') }}" alt="Logo">
+                              <img style="background: linear-gradient(135deg, rgb(8, 28, 32), #170536);" src="{{ asset('website/assets/images/logo/servi.png') }}" alt="Logo">
                           </a>
                       </div>
 
