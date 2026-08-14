@@ -6,24 +6,24 @@
       </p>
     <![endif]-->
 
-  <div class="preloader">
+  {{-- <div class="preloader">
       <div class="preloader-inner">
           <div class="preloader-icon">
               <span></span>
               <span></span>
           </div>
       </div>
-  </div>
+  </div> --}}
 
 
   <header class="header navbar-area">
       <div class="container">
           <div class="row">
               <div class="col-12">
-                  <select>
+                  {{-- <select>
                       <option></option>
                       <option></option>
-                  </select>
+                  </select> --}}
               </div>
           </div>
       </div>
