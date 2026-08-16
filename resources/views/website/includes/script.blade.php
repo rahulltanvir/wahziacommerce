@@ -1,8 +1,8 @@
 
-<script src="{{asset('/')}}website/assets/js/bootstrap.min.js"></script>
-    <script src="{{asset('/')}}website/assets/js/tiny-slider.js"></script>
-    <script src="{{asset('/')}}website/assets/js/glightbox.min.js"></script>
-    <script src="{{asset('/')}}website/assets/js/main.js"></script>
+<script src="{{ asset('website/assets/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('website/assets/js/tiny-slider.js') }}"></script>
+<script src="{{ asset('website/assets/js/glightbox.min.js') }}"></script>
+<script src="{{ asset('website/assets/js/main.js') }}"></script>
     <script type="text/javascript">
         //========= Hero Slider 
         tns({
