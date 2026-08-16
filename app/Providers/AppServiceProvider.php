@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Category;
 use App\Models\SubCategory;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use View;
 
@@ -22,6 +23,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Force HTTPS on Vercel production
+        if (app()->environment('production')) {
+            URL::forceScheme('https');
+        }
+
         View::composer(['website.includes.header'], function ($view) {
 
             $categories = Category::where('status', 1)->get();
