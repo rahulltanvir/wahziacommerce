@@ -16,6 +16,10 @@
     ],
     "routes": [
         {
+            "src": "/assets/(.*)",
+            "dest": "/public/assets/$1"
+        },
+        {
             "src": "/build/assets/(.*)",
             "dest": "/public/build/assets/$1"
         },
