@@ -1,42 +1,46 @@
 <?php
 
-use Illuminate\Http\Request;
-
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
-ini_set('log_errors', '1');
-ini_set('error_log', '/tmp/php-error.log');
+
+echo '<pre>';
 
 try {
     require __DIR__ . '/../vendor/autoload.php';
+    echo "1. AUTOLOAD OK\n";
 
     $app = require_once __DIR__ . '/../bootstrap/app.php';
+    echo "2. APP BOOTSTRAP OK\n";
 
-    $app->useStoragePath('/tmp/storage');
+    echo "3. VIEW BOUND: ";
+    echo $app->bound('view') ? "YES\n" : "NO\n";
 
-    $directories = [
-        '/tmp/storage/framework/cache',
-        '/tmp/storage/framework/sessions',
-        '/tmp/storage/framework/views',
-        '/tmp/storage/logs',
-    ];
-
-    foreach ($directories as $directory) {
-        if (!is_dir($directory)) {
-            mkdir($directory, 0777, true);
+    echo "4. LOADED PROVIDERS:\n";
+    foreach (array_keys($app->getLoadedProviders()) as $provider) {
+        if (str_contains($provider, 'View')) {
+            echo $provider . "\n";
         }
     }
 
-    $app->handleRequest(Request::capture());
+    echo "5. REQUEST START\n";
+
+    $app->useStoragePath('/tmp/storage');
+
+    $request = \Illuminate\Http\Request::capture();
+
+    echo "6. REQUEST CAPTURED\n";
+
+    $app->handleRequest($request);
 
 } catch (\Throwable $e) {
+
     http_response_code(500);
 
-    echo '<pre>';
-    echo 'ERROR: ' . $e->getMessage() . PHP_EOL;
-    echo 'FILE: ' . $e->getFile() . PHP_EOL;
-    echo 'LINE: ' . $e->getLine() . PHP_EOL;
-    echo PHP_EOL;
-    echo $e->getTraceAsString();
-    echo '</pre>';
+    echo "\n--- ORIGINAL ERROR ---\n";
+    echo "ERROR: " . $e->getMessage() . "\n";
+    echo "FILE: " . $e->getFile() . "\n";
+    echo "LINE: " . $e->getLine() . "\n";
+    echo "\n" . $e->getTraceAsString();
 }
+
+echo '</pre>';
